@@ -1,7 +1,7 @@
 
  import popualteLabels from "./labels.js";
  import searchImages from "./searchImages.js";
- import { getCookie } from "./cookie.js";
+ import { getQuery } from "./localStorage.js";
 
 
 popualteLabels();
@@ -16,6 +16,10 @@ document.querySelector("form").addEventListener("submit", async function(event){
 });
 
 (async() => {
-    const query = getCookie();
+    const query = getQuery();
     await searchImages(query);
 })();
+
+Fancybox.bind("[data-fancybox]", {
+    // Your custom options
+  });

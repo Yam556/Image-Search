@@ -1,8 +1,9 @@
 import { ACCESS_KEY } from "./constants.js";
-import { addCookie }  from "./cookie.js";
+import { setQuery } from "./localStorage.js";
+
 
 export default async function searchImages(query){
-    addCookie(query);
+    setQuery(query);
     console.log({query});
     const url = `https://api.unsplash.com/search/photos?page=1&query=${query}&client_id=${ACCESS_KEY}`;
     console.log({url});
@@ -14,8 +15,9 @@ export default async function searchImages(query){
     let imageElements = '';
     for(let image of images){
         const imageUrl = image.urls.regular;
-        imageElements +=  `<img src="${imageUrl}" alt="">`;
+        imageElements +=  `<a href="${imageUrl}" data-fancybox="Gallary"><img src="${imageUrl}" alt="">`;
         console.log({imageUrl});
     }
    document.querySelector('.images').innerHTML = imageElements;
 }
+
